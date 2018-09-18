@@ -1,0 +1,24 @@
+create database IPL;
+
+//table for player information
+create table IPLP(pname varchar(50),pteam varchar(50),runs number(4),wickets number(3), salary number(8));
+
+
+//table for match information
+create table match(matchno number(4),mteam1 varchar(50),mteam2 varchar(50),dom date);
+
+
+//table for score information
+create table score(matchno number(4),pname varchar(50),runs number(3),wickets number(4),pteam varchar(50));
+
+
+select pname from IPLP where pteam='Mumbai Indians';
+
+select count(*) as Total Players from IPLP;
+select sum(r.runs) as total, r.pname from score r join IPLP p using(pname) group by r.pname order by sum(r.runs) desc limit 1;
+
+select sum(r.wickets) as total, r.pname from score r join IPLP p using(pname) group by r.pname order by sum(r.wickets) desc limit 1;
+
+select avg(salary) as Average from IPLP where tname='Chennai Super Kings';
+
+select tname from match where dom='date of match';
